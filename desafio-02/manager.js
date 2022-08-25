@@ -1,21 +1,5 @@
-// Implementar programa que contenga una clase llamada Contenedor que reciba el nombre del archivo con el que va a trabajar e implemente los siguientes métodos
-
-// save(Object): Number - Recibe un objeto, lo guarda en el archivo, devuelve el id asignado.
-// getById(Number): Object - Recibe un id y devuelve el objeto con ese id, o null si no está.
-// getAll(): Object[] - Devuelve un array con los objetos presentes en el archivo.
-// deleteById(Number): void - Elimina del archivo el objeto con el id buscado.
-// deleteAll(): void - Elimina todos los objetos presentes en el archivo.
-
-/*
-  Schema
-  object = {
-    title: (string)
-    price: (number)
-    thumbnail: (string)
-  }
-*/
 const fs = require('fs')
-const path = require('path')
+// const path = require('path')
 
 const pathToFile = './productos.txt'
 
@@ -48,8 +32,8 @@ class Manager {
     if (fs.existsSync(pathToFile)) {
       let data = await fs.promises.readFile(pathToFile, 'utf-8')
       let products = JSON.parse(data)
-      let findUser = products.find(findUser => findUser.id === id)
-      if (findUser) return {status: "success", message: findUser}
+      let findProduct = products.find(findProduct => findProduct.id === id)
+      if (findProduct) return {status: "success", message: findProduct}
       return {status: 'error', message: 'product not found'}
     } else {
       return {status: 'error', message: 'product not found'}
@@ -68,10 +52,29 @@ class Manager {
   }
 
   // deleteById(Number): void - Elimina del archivo el objeto con el id buscado.
+  deleteById = async (id) => {
+    if (!id) return {status: 'error', message: 'missing id'}
+    if (fs.existsSync(pathToFile)) {
+      let data = await fs.promises.readFile(pathToFile, 'utf-8')
+      let products = JSON.parse(data)
+      let newProductsList = products.filter(newProductsList => newProductsList.id !== id)
+      await fs.promises.writeFile(pathToFile, JSON.stringify(newProductsList, null, 2))
+      return {status: 'success', message: 'product deleted'}
+    } else {
+      return {status: 'error', message: 'product not found'}
+    }
+  }
 
+  // deleteAll(): void - Elimina todos los objetos presentes en el archivo.
+  deleteAll = async () => {
+    if (fs.existsSync(pathToFile)) {
+      await fs.promises.unlink(pathToFile)
+      return {status: 'success', message: 'products deleted'}
+    } else {
+      return {status: 'error', message: 'something gone wrong'}
+    }
+  }
+  
 }
-
-
-
 
 module.exports = Manager
