@@ -1,7 +1,12 @@
 const fs = require('fs')
-// const path = require('path')
 
 const pathToFile = './productos.txt'
+
+const readFile = async (file) => {
+  let data = await fs.promises.readFile(file, 'utf-8')
+  let products = JSON.parse(data)
+  return products
+}
 
 class Manager {
   // save(Object): Number - Recibe un objeto, lo guarda en el archivo, devuelve el id asignado.
@@ -9,8 +14,7 @@ class Manager {
     if (!newProduct.title || !newProduct.price || !newProduct.thumbnail) return {status: 'error', message: 'missing fields'} 
     try {
       if (fs.existsSync(pathToFile)) {
-        let data = await fs.promises.readFile(pathToFile, 'utf-8')
-        let products = JSON.parse(data)
+        let products = await readFile(pathToFile)
         let id = products[products.length-1].id + 1
         newProduct.id = id
         products.push(newProduct)
@@ -30,8 +34,7 @@ class Manager {
   getById = async (id) => {
     if (!id) return {status: 'error', message: null}
     if (fs.existsSync(pathToFile)) {
-      let data = await fs.promises.readFile(pathToFile, 'utf-8')
-      let products = JSON.parse(data)
+      let products = await readFile(pathToFile)
       let findProduct = products.find(findProduct => findProduct.id === id)
       if (findProduct) return {status: "success", message: findProduct}
       return {status: 'error', message: 'product not found'}
@@ -43,9 +46,7 @@ class Manager {
   // getAll(): Object[] - Devuelve un array con los objetos presentes en el archivo.
   getAll = async () => {
     if (fs.existsSync(pathToFile)){
-      let data = await fs.promises.readFile(pathToFile, 'utf-8')
-      let products = JSON.parse(data)
-      return {status: 'success', message: products}
+      return {status: 'success', message: await readFile(pathToFile)}
     } else {
       return {status: 'error', message: 'object not found'}
     }
@@ -55,8 +56,7 @@ class Manager {
   deleteById = async (id) => {
     if (!id) return {status: 'error', message: 'missing id'}
     if (fs.existsSync(pathToFile)) {
-      let data = await fs.promises.readFile(pathToFile, 'utf-8')
-      let products = JSON.parse(data)
+      let products = await readFile(pathToFile)
       let newProductsList = products.filter(newProductsList => newProductsList.id !== id)
       await fs.promises.writeFile(pathToFile, JSON.stringify(newProductsList, null, 2))
       return {status: 'success', message: 'product deleted'}
