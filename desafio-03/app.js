@@ -16,7 +16,7 @@ app.get('/productos', (request, response) => {
 app.get('/productoRandom', (request, response) => {
   manager.getAll().then(res => {
     let products = res.message
-    let random = Math.floor(Math.random() * products.length + 1)
+    let random = Math.floor(Math.random() * products.length)
     manager.getById(random).then(res => {response.send(res.message)})
   })
 })
