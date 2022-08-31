@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-const pathToFile = './desafio-02/productos.txt'
+const pathToFile = '../desafio-02/productos.txt'
 
 const readFile = async (file) => {
   let data = await fs.promises.readFile(file, 'utf-8')
