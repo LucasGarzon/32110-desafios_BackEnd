@@ -10,7 +10,6 @@ server.on('error', err => console.log(`Error en el servidor ${err}`))
 // 1 -- A
 app.get('/productos', (request, response) => {
   manager.getAll().then(res => response.send(res.message))
-  manager.getAll().then(res => console.log(res))
 })
 
 // 1 -- B
