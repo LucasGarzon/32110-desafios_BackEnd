@@ -1,0 +1,16 @@
+<%- include('./partials/head')  %> 
+<%  if (products.length > 0) { %> 
+  <% products.forEach(item => { %>
+    <ul>
+      <li><%= item.title %></li>
+      <li>$<%= item.price %></li>
+    </ul>
+    <img src="<%= item.thumbnail %>">
+    <hr>
+    <% }) %>  
+<% }  else { %> 
+  <p>No hay datos</p>
+  <a href="/">Ir al formulario</a>
+<% } %> 
+<a href="/">Ir al formulario</a>
+<%- include('./partials/foot')  %> 
