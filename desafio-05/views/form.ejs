@@ -1,13 +1,27 @@
 <%- include('./partials/head')  %> 
-<h1>Crea tu producto</h1>
-<form id="productsForm" method="post">
-  <label>Title:</label>
-  <input name="title">
-  <label>Price:</label>
-  <input name="price">
-  <label>Thumbnail:</label>
-  <input name="thumbnail">
-  <input type="submit">
-</form>
-<a href="/products">Ir a Productos</a>
+<h1 class="text-center m-3">Crea tu producto</h1>
+<div class="m-auto border col-11 col-md-6 col-lg-3 text-center">
+  <form id="productsForm" method="post">
+    <fieldset>
+      <div class="m-3 d-flex flex-column justify-content-center">
+        <label>Title:</label>
+        <input name="title" class="m-auto">
+      </div>
+      <div class="m-3 d-flex flex-column justify-content-center">
+        <label>Price:</label>
+        <input name="price" class="m-auto">
+      </div>
+      <div class="m-3 d-flex flex-column justify-content-center">
+        <label>Thumbnail:</label>
+        <input name="thumbnail" class="m-auto">
+      </div>
+      <input type="submit" class="btn btn-primary m-3">
+    </fieldset>
+  </form>
+</div>
+<div class="container">
+  <div class="row col-11 col-md-6 col-lg-3 text-center m-auto mt-3">
+    <a href="/products" class="text-center btn btn-success m-auto">Ir a Productos</a>
+  </div>
+</div>
 <%- include('./partials/foot')  %> 
