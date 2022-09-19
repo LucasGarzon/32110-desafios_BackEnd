@@ -1,0 +1,22 @@
+<div class="m-auto border col-11 col-md-6 col-lg-3 text-center">
+  <h1 class="text-center m-3">Create a product</h1>
+  <form id="productsForm" method="post">
+    <fieldset>
+      <div class="m-3 d-flex flex-column justify-content-center">
+        <label>Title:</label>
+        <input name="title" class="m-auto form-control">
+      </div>
+      <div class="m-3 d-flex flex-column justify-content-center">
+        <label>Price:</label>
+        <input name="price" class="m-auto form-control">
+      </div>
+      <div class="m-3 d-flex flex-column justify-content-center">
+        <label>Thumbnail:</label>
+        <input name="thumbnail" class="m-auto form-control">
+      </div>
+      <input type="submit" class="btn btn-primary mb-3">
+      <hr>
+      <%- include('./get-products')  %> 
+    </fieldset>
+  </form>
+</div>
