@@ -11,7 +11,7 @@ class Manager {
       ...product
     }
     products.push(product)
-    return product
+    return products
   }
 
   findAll = () => {

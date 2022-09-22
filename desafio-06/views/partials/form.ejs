@@ -1,6 +1,6 @@
 <div class="m-auto border col-11 col-md-6 col-lg-3 text-center">
   <h1 class="text-center m-3">Create a product</h1>
-  <form id="productsForm" method="post">
+  <form id="productsForm">
     <fieldset>
       <div class="m-3 d-flex flex-column justify-content-center">
         <label>Title:</label>
@@ -16,7 +16,7 @@
       </div>
       <input type="submit" class="btn btn-primary mb-3">
       <hr>
-      <%- include('./get-products')  %> 
+      <div id="history" class="row d-flex justify-content-center p-2 m-auto">No hay productos</div>
     </fieldset>
   </form>
 </div>
