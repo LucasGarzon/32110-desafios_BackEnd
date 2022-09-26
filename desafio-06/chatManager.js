@@ -6,7 +6,6 @@ class ChatManager {
     create = async (message) => {
         try {
             if (fs.existsSync(pathToFile)) {
-                console.log('hola?')
                 let data = await fs.promises.readFile(pathToFile, 'utf-8')
                 let chat = JSON.parse(data)
                 let id = chat[chat.length-1].id+1
