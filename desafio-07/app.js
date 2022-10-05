@@ -2,6 +2,10 @@ const express = require('express')
 const {Server} = require('socket.io')
 const productRouter = require('./routes/productRouter.js')
 const chatRouter = require('./routes/chat-router.js')
+const options = require('./options/mysql.config.js')
+const knex = require('knex')
+
+const database = knex(options)
 
 const ProductManager = require('./manager')
 const ChatManager = require('./chatManager')
@@ -33,6 +37,8 @@ app.use('/chat', chatRouter)
 io.on('connection', socket => {
   console.log(`Client ${socket.id} connected...`)
   productManager.findAll().then(result => socket.emit('history', result))
+                          .catch(err => console.log(err))
+                          .finally(() => database.destroy())
   chatManager.findAll().then(result => socket.emit('chatHistory', result))
   socket.on('products', data => {
       io.emit('history', data)
