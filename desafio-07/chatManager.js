@@ -1,34 +1,38 @@
-const fs = require('fs')
 
-const pathToFile = './chat.json'
+const options = require('./options/sqlite.config.js')
+const knex = require('knex')
+
+const database = knex(options)
 
 class ChatManager {
     create = async (message) => {
         try {
-            if (fs.existsSync(pathToFile)) {
-                let data = await fs.promises.readFile(pathToFile, 'utf-8')
-                let chat = JSON.parse(data)
-                let id = chat[chat.length-1].id+1
-                message = {
-                    id,
-                    email: message.email,
-                    timestamp: new Date().toLocaleString(),
-                    message: message.message
-                }
-                chat.push(message)
-                await fs.promises.writeFile(pathToFile, JSON.stringify(chat, null, 2))
-                return chat
+            let existTable = await database.schema.hasTable('messages')
+            if (existTable) {
+            message = {
+                email: message.email,
+                timestamp: new Date().toLocaleString(),
+                message: message.message               
+            }
+            await database('messages').insert(message)
+            let results = JSON.parse(JSON.stringify(await database.from('messages').select('*'))) 
+            return results
             } else {
-                let id = 1
+                await database.schema.createTable('messages', table => {
+                    table.increments('id')
+                    table.string('email', 64).nullable(false)
+                    table.string('timestamp', 32).nullable(false)
+                    table.string('message', 256).nullable(false)
+                })
                 message = {
-                    id,
                     email: message.email,
                     timestamp: new Date().toLocaleString(),
-                    message: message.message
+                    message: message.message               
                 }
-                await fs.promises.writeFile(pathToFile, JSON.stringify([message], null, 2))
-                console.log([message])
-                return [message]
+                await database('messages').insert(message)
+                let results = JSON.parse(JSON.stringify(await database.from('messages').select('*'))) 
+                // database.destroy()
+                return results 
             }
         } catch(err) {
             return {status: "error", message: err.message}
@@ -37,11 +41,12 @@ class ChatManager {
 
     findAll = async () => {
         let chat = []
-        if (fs.existsSync(pathToFile)) {
-            let data = await fs.promises.readFile(pathToFile, 'utf-8')
-            chat = JSON.parse(data)
+        let existTable = await database.schema.hasTable('messages')
+        if (existTable) {
+            chat = JSON.parse(JSON.stringify(await database.from('messages').select('*'))) 
         }
         return chat
+        // database.destroy()
     }
 }
 

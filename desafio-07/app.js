@@ -3,9 +3,13 @@ const {Server} = require('socket.io')
 const productRouter = require('./routes/productRouter.js')
 const chatRouter = require('./routes/chat-router.js')
 const options = require('./options/mysql.config.js')
+const optionsChat = require('./options/sqlite.config.js')
 const knex = require('knex')
 
+
 const database = knex(options)
+
+const databaseChat = knex(optionsChat)
 
 const ProductManager = require('./manager')
 const ChatManager = require('./chatManager')
@@ -40,6 +44,8 @@ io.on('connection', socket => {
                           .catch(err => console.log(err))
                           .finally(() => database.destroy())
   chatManager.findAll().then(result => socket.emit('chatHistory', result))
+                       .catch(err => console.log(err))
+                       .finally(() => databaseChat.destroy())
   socket.on('products', data => {
       io.emit('history', data)
   })
