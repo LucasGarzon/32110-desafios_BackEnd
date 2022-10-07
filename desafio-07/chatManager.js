@@ -16,6 +16,7 @@ class ChatManager {
             }
             await database('messages').insert(message)
             let results = JSON.parse(JSON.stringify(await database.from('messages').select('*'))) 
+            // database.destroy()
             return results
             } else {
                 await database.schema.createTable('messages', table => {
@@ -44,10 +45,11 @@ class ChatManager {
         let existTable = await database.schema.hasTable('messages')
         if (existTable) {
             chat = JSON.parse(JSON.stringify(await database.from('messages').select('*'))) 
+            // database.destroy()
         }
         return chat
-        // database.destroy()
     }
 }
+
 
 module.exports = ChatManager

@@ -1,0 +1,70 @@
+DESAFIO 08 | MongoDB
+Lista de comandos
+
+Profesor: Alex Marin Mendez
+Tutor: Fernando Galdós 
+Alumno: Lucas Garzón
+
+--------------------------------------------------
+1 - Crear base de datos: 
+use ecommerce
+--------------------------------------------------
+2 - Crear colección "Mensajes":
+db.createCollection("mensajes)
+--------------------------------------------------
+3 - Crear collecion "Productos":
+db.createCollection("productos")
+--------------------------------------------------
+4 - Insertar 10 documentos en la colección "Mensajes":
+db.mensajes.insertMany([{email: "email_ejemplo_01@gmail.com", timestamp: new Date().toLocaleString(), message: "mensaje_ejemplo_01"}, {email: "email_ejemplo_02@gmail.com", timestamp: new Date().toLocaleString(), message: "mensaje_ejemplo_02"}, {email: "email_ejemplo_03@gmail.com", timestamp: new Date().toLocaleString(), message: "mensaje_ejemplo_03"}, {email: "email_ejemplo_04@gmail.com", timestamp: new Date().toLocaleString(), message: "mensaje_ejemplo_04"}, {email: "email_ejemplo_05@gmail.com", timestamp: new Date().toLocaleString(), message: "mensaje_ejemplo_05"}, {email: "email_ejemplo_06@gmail.com", timestamp: new Date().toLocaleString(), message: "mensaje_ejemplo_06"}, {email: "email_ejemplo_07@gmail.com", timestamp: new Date().toLocaleString(), message: "mensaje_ejemplo_07"}, {email: "email_ejemplo_08@gmail.com", timestamp: new Date().toLocaleString(), message: "mensaje_ejemplo_08"}, {email: "email_ejemplo_09@gmail.com", timestamp: new Date().toLocaleString(), message: "mensaje_ejemplo_09"}, {email: "email_ejemplo_10@gmail.com", timestamp: new Date().toLocaleString(), message: "mensaje_ejemplo_10"}])
+--------------------------------------------------
+5 - Insertar 10 documentos en la coleccion "Productos": 
+db.productos.insertMany([{nombre:"producto_ejemplo_01", precio:120, thumbnail: "url_ejemplo_01"}, {nombre:"producto_ejemplo_02", precio:580, thumbnail: "url_ejemplo_02"}, {nombre:"producto_ejemplo_03", precio:900, thumbnail: "url_ejemplo_03"}, {nombre:"producto_ejemplo_04", precio:1280, thumbnail: "url_ejemplo_04"}, {nombre:"producto_ejemplo_05", precio:1700, thumbnail: "url_ejemplo_05"}, {nombre:"producto_ejemplo_06", precio:2300, thumbnail: "url_ejemplo_06"}, {nombre:"producto_ejemplo_07", precio:2860, thumbnail: "url_ejemplo_07"}, {nombre:"producto_ejemplo_08", precio:3350, thumbnail: "url_ejemplo_08"}, {nombre:"producto_ejemplo_09", precio:4320, thumbnail: "url_ejemplo_09"}, {nombre:"producto_ejemplo_10", precio:4990, thumbnail: "url_ejemplo_10"}])
+--------------------------------------------------
+6 - Listar todos los documentos en cada colección: 
+a - En mensajes:
+db.mensajes.find()
+b - En productos:
+db.productos.find() 
+--------------------------------------------------
+7 - Mostrar la cantidad de documentos almacenados en cada colección:
+a - En mensajes:
+db.mensajes.estimatedDocumentCount()
+b - En productos:
+db.productos.estimatedDocumentCount()
+--------------------------------------------------
+8 - Agregar un producto más en la colección de productos:
+db.productos.insertOne({nombre:"producto_ejemplo_11", precio:2988, thumbnail: "url_ejemplo_11"})
+--------------------------------------------------
+9 - Realizar una consulta por nombre de producto específico:
+db.productos.findOne({nombre:"producto_ejemplo_05"})
+--------------------------------------------------
+10 - Listar los productos con precio menor a 1000 pesos:
+db.productos.find({precio:{$lt:1000}})
+--------------------------------------------------
+11 - Listar los productos con precio entre los 1000 a 3000 pesos:
+db.productos.find({$and:[{precio:{$gt:1000}},{precio:{$lt: 3000}}]})
+--------------------------------------------------
+12 - Listar los productos con precio mayor a 3000 pesos:
+db.productos.find({precio:{$gt:3000}})
+--------------------------------------------------
+13 - Realizar una consulta que traiga sólo el nombre del tercer producto más barato:
+db.productos.find({},{"nombre":1, "_id":0}).sort({"precio":1}).skip(2).limit(1)
+--------------------------------------------------
+14 - Hacer una actualización sobre todos los productos, agregando el campo stock a todos ellos con un valor de 100:
+db.productos.updateMany({},{$set: {"stock": 100}})
+--------------------------------------------------
+15 - Cambiar el stock a cero de los productos con precios mayores a 4000 pesos:
+db.productos.updateMany({"precio":{$gt: 4000}}, {$set:{"stock": 0}})
+--------------------------------------------------
+16 - Borrar los productos con precio menor a 1000 pesos:
+db.productos.deleteMany({"precio":{$lt:1000}})
+--------------------------------------------------
+17 - Crear un usuario 'pepe' clave: 'asd456' que sólo pueda leer la base de datos ecommerce. Verificar que pepe no pueda cambiar la información:
+a- Cambiar a la BD "Admin":
+use admin
+b- Crear Usuario:
+db.createUser({user:"pepe", pwd:"asd456", roles:[{role:"read", db:"ecommerce"}]})
+c - Cerrar conexión con MongoShell
+d - Volver a iniciar MongoShell, pero esta vez como el usuario pepe:
+mongosh -u pepe -p asd456
