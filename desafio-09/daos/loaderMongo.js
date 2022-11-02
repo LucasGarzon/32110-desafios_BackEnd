@@ -1,6 +1,8 @@
 import mongoose from 'mongoose'
+import * as dotenv from 'dotenv' 
+dotenv.config()
 
-const uri = "mongodb+srv://coderuser:m0UT39tsieEmsxJ5@codercluster.q42yf0t.mongodb.net/desafio09";
+const uri = process.env.USER_URI
 
 export default async function startDB(){
   await mongoose.connect(uri, (err) => {
