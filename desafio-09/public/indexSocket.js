@@ -41,7 +41,7 @@ socket.on('history', data => {
       data.forEach(product => {
           html += `
           <tr>
-            <th scope="row">${product.id}</th>
+            <th scope="row">${product._id}</th>
             <td>${product.title}</td>
             <td>$${product.price}</td>
           <td>
