@@ -3,7 +3,6 @@ import knex from 'knex';
 import options from '../options/sqlite.config.js'
 import Manager from '../chatManager.js'
 
-
 const router = Router()
 const database = knex(options)
 const manager = new Manager()

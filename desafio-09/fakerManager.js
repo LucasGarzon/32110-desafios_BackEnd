@@ -1,13 +1,13 @@
 import { faker } from '@faker-js/faker'
 
-export const randomProducts = []
+const randomProducts = []
 
 function createRandomProducts() {
   return {
     id: parseFloat(faker.random.numeric(3)),
     title: faker.commerce.productName(),
     price: parseFloat(faker.commerce.price(10, 4500)),
-    thumbnail: faker.image.imageUrl()
+    thumbnail: faker.image.image(640, 480, true)
   };
 }
 
@@ -15,8 +15,4 @@ Array.from({ length: 5 }).forEach(() => {
   randomProducts.push(createRandomProducts());
 });
 
-router.get('/', (req, res) => {
-
-})
-
-
+export default randomProducts

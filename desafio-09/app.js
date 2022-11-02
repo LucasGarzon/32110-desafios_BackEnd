@@ -7,6 +7,7 @@ import optionsChat from './options/sqlite.config.js'
 import knex from 'knex'
 import ProductManager from './manager.js'
 import ChatManager from './chatManager.js'
+import randomProducts from './fakerManager.js'
 
 
 const database = knex(options)
@@ -32,9 +33,14 @@ app.set('view engine', 'ejs')
 app.get('/', (req, res) => {
   res.render('index')
 })
+//View de Faker
+app.get('/api/productos-test', (req, res) => {
+  res.render('indexFaker', {randomProducts})
+})
 
 app.use('/products', productRouter)
 app.use('/chat', chatRouter)
+
 
 io.on('connection', socket => {
   console.log(`Client ${socket.id} connected...`)

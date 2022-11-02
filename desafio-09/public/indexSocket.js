@@ -24,7 +24,6 @@ productsForm.addEventListener('submit', (e) => handleSubmit(e, e.target, '/produ
 chatForm.addEventListener('submit', (e) => handleSubmit(e, e.target, '/chat'))
 
 socket.on('history', data => {
-  console.log(data);
   if (data.length > 0) {
       let history = document.getElementById('history')
       let html = `
