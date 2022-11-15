@@ -57,7 +57,7 @@ app.get('/', sessionChecker, (req, res) => {
 
 app.get('/dashboard', (req, res) => {
   if (req.session.user && req.cookies.user_sid) {
-      res.render('index', {user: req.session.username})
+      res.render('index', {user: req.session.user.username})
   } else {
       res.redirect('/login')
   }
@@ -77,6 +77,15 @@ app.route('/login').get(sessionChecker, (req, res) => {
           res.redirect('/dashboard')
       }
   })
+})
+
+app.route('/logout').get((req, res) => {
+  res.render('index_logout', {user: req.session.user.username})
+}).delete((req, res) => {
+  if (req.session.user && req.cookies.user_sid) {
+      req.session.destroy()
+  }
+  res.redirect('/login')
 })
 
 app.use('/products', productRouter)
