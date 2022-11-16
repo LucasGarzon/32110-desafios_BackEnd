@@ -26,6 +26,7 @@ const io = new Server(server)
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+//IMPLEMENTACION DEL DESAFIO 10 --------------------------
 app.use(cookieParser())
 app.use(session({
   store: MongoStore.create({
@@ -39,10 +40,12 @@ app.use(session({
   saveUninitialized: false,
   cookie: { maxAge: 60000 }
 }))
+//-------------------------------------------------------
 app.use('/content', express.static('./public'))
 app.set('views', './views')
 app.set('view engine', 'ejs')
 
+//IMPLEMENTACION DEL DESAFIO 10 --------------------------
 const sessionChecker = (req, res, next) => {
   if (req.session.user && req.cookies.user_sid) {
       res.redirect('/dashboard')
@@ -87,10 +90,10 @@ app.route('/logout').get((req, res) => {
   }
   res.redirect('/login')
 })
+//-----------------------------------------------------------
 
 app.use('/products', productRouter)
 app.use('/chat', chatRouter)
-
 
 io.on('connection', socket => {
   console.log(`Client ${socket.id} connected...`)
