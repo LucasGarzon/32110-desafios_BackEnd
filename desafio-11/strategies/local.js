@@ -6,7 +6,7 @@ import userModel from "../models/User.js"
 passport.use(new LocalStrategy(function (username, password, done) {
   userModel.findOne({username: username}, function (err, user) {
     if (err) return done(err)
-    if (!err) return done(null, false, {message: 'Nombre de usuario no válido'})
+    if (!user) return done(null, false, {message: 'Nombre de usuario no válido'})
 
     bcrypt.compare(password, user.password, function (err, res) {
       if (err) return done(err)
@@ -15,6 +15,20 @@ passport.use(new LocalStrategy(function (username, password, done) {
     })
   })
 }))
+
+// passport.use(new LocalStrategy(function (username, password, done) {
+// 	userModel.findOne({ username: username }, function (err, user) {
+// 		if (err) return done(err);
+// 		if (!user) return done(null, false, { message: 'Incorrect username.' });
+
+// 		bcrypt.compare(password, user.password, function (err, res) {
+// 			if (err) return done(err);
+// 			if (res === false) return done(null, false, { message: 'Incorrect password.' });
+			
+// 			return done(null, user);
+// 		});
+// 	});
+// }));
 
 passport.serializeUser((user, done) => done(null, user.id))
 

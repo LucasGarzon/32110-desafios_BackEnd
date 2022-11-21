@@ -50,32 +50,25 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// const sessionChecker = (req, res, next) => {
-//   if (req.session.user && req.cookies.user_sid) {
-//       res.redirect('/dashboard')
-//   } else {
-//       next()
-//   }
-// }
-
-const sessionChecker = (req, res, next) => {
-  if (!req.isAuthenticated()) return next()
-  res.redirect('/dashboard')
+const logChecker = (req, res, next) => {
+  if (req.isAuthenticated()) return next()
+  res.redirect('/login')
 }
 
-app.get('/', sessionChecker, (req, res) => {
-  res.redirect('/login')
+const outlineChecker = (req, res, next) => {
+  if (!req.isAuthenticated()) return next()
+  res.redirect('/')
+}
+
+app.get('/', logChecker, (req, res) => {
+  res.render('index', {user: req.user.username})
 })
 
-app.get('/dashboard', (req, res) => {
-  if (req.session.user && req.cookies.user_sid) {
-      res.render('index', {user: req.session.user.username})
-  } else {
-      res.redirect('/login')
-  }
+app.get('/dashboard', logChecker, (req, res) => {
+    res.render('index', {user: req.user.username})
 })
 
-app.get('/singup', sessionChecker, (req, res) => {
+app.get('/singup', (req, res) => {
   res.render('index_singup')
 })
 
@@ -100,39 +93,24 @@ app.post('/singup', async (req, res) => {
   }
 })
 
-app.get('/login', sessionChecker, (req, res) => {  
+app.get('/login', outlineChecker, (req, res) => {  
   res.render('index_login');
 })
 
 app.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
+  successRedirect: '/dashboard',
   failureRedirect: '/login'
 }))
 
-// app.route('/login').get(sessionChecker, (req, res) => {
-//   res.render('index_login')
-// }).post((req, res) => {
-//   let user = new User({
-//       username: req.body.username,
-//   })
-//   user.save((err, docs) => {
-//       if (err) {
-//           res.redirect('/login')
-//       } else {
-//           req.session.user = docs
-//           res.redirect('/dashboard')
-//       }
-//   })
-// })
-
-// app.route('/logout').get((req, res) => {
-//   res.render('index_logout', {user: req.session.user.username})
-// }).delete((req, res) => {
-//   if (req.session.user && req.cookies.user_sid) {
-//       req.session.destroy()
-//   }
-//   res.redirect('/login')
-// })
+app.get('/logout', function (req, res, next) {
+  const username = req.user.username
+	req.logout(function(err) {
+    if (err) { 
+      return next(err); 
+    }
+    res.render('index_logout', {user: username})
+  })
+})
 
 //-----------------------------------------------------------
 
