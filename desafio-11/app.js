@@ -76,6 +76,10 @@ app.get('/registerError', (req, res) => {
   res.render('register_error')
 })
 
+app.get('/loginError', (req, res) => {
+  res.render('login_error')
+})
+
 app.post('/singup', async (req, res) => {
   const {username, email, password} = req.body
   try {
@@ -99,7 +103,7 @@ app.get('/login', outlineChecker, (req, res) => {
 
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/dashboard',
-  failureRedirect: '/login'
+  failureRedirect: '/loginError'
 }))
 
 app.get('/logout', function (req, res, next) {
