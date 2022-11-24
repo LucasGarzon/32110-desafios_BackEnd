@@ -7,6 +7,7 @@ import passport from 'passport'
 import bcrypt from 'bcryptjs'
 import {productRouter} from './routes/productRouter.js'
 import {chatRouter} from './routes/chat-router.js'
+import { infoRouter } from './routes/info.js'
 import ProductManager from './manager.js'
 import ChatManager from './chatManager.js'
 import loader from './daos/dataBaseLoader.js'
@@ -23,7 +24,7 @@ const productManager = new ProductManager()
 const chatManager = new ChatManager()
 
 const app = express()
-const PORT = process.env.PORT || 8080
+const PORT = parseInt(process.argv.slice(2)) || 8080
 const server = app.listen(PORT, () => console.log(`Server up on port ${PORT}`))
 const io = new Server(server)
 
@@ -41,7 +42,7 @@ app.use(session({
     collectionName: 'sessions',
     ttl: 120
   }),
-  key: 'user_sid',
+  key: process.env.USER_KEY,
   secret: 'c0d3r',
   resave: false,
   saveUninitialized: false,
@@ -118,6 +119,7 @@ app.get('/logout', function (req, res, next) {
 
 //-----------------------------------------------------------
 
+app.use('/info', infoRouter)
 app.use('/products', productRouter)
 app.use('/chat', chatRouter)
 
