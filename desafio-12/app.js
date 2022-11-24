@@ -7,13 +7,14 @@ import passport from 'passport'
 import bcrypt from 'bcryptjs'
 import {productRouter} from './routes/productRouter.js'
 import {chatRouter} from './routes/chat-router.js'
-import { infoRouter } from './routes/info.js'
+import { infoRouter } from './routes/info-router.js'
 import ProductManager from './manager.js'
 import ChatManager from './chatManager.js'
 import loader from './daos/dataBaseLoader.js'
 import * as dotenv from 'dotenv' 
 import userModel from './models/User.js'
 import './strategies/local.js'
+import { randomRouter } from './routes/randoms-router.js'
 dotenv.config()
 
 const uri = process.env.USER_URI
@@ -120,6 +121,7 @@ app.get('/logout', function (req, res, next) {
 //-----------------------------------------------------------
 
 app.use('/info', infoRouter)
+app.use('/api/random', randomRouter)
 app.use('/products', productRouter)
 app.use('/chat', chatRouter)
 

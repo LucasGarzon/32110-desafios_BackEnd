@@ -18,12 +18,12 @@
         <h5 class="m-3 text-truncate">Node Version: <span class="text-success"><%= info.nodeVersion %></span></h5>
         <hr>
         <h5 class="m-3 text-truncate">Memory Usage: </h5>
-        <ul class="list-group">
-          <li class="list-group-item list-group-item-success"><span class="text-success text-truncate"><b>rss: </b><%= info.memoryUsage.rss %></span></li>
-          <li class="list-group-item list-group-item-success"><span class="text-success text-truncate"><b>heapTotal: </b><%= info.memoryUsage.heapTotal %></span></li>
-          <li class="list-group-item list-group-item-success"><span class="text-success text-truncate"><b>heapUsed: </b> <%= info.memoryUsage.heapUsed %></span></li>
-          <li class="list-group-item list-group-item-success"><span class="text-success text-truncate"><b>external: </b> <%= info.memoryUsage.external %></span></li>
-          <li class="list-group-item list-group-item-success"><span class="text-success text-truncate"><b>arrayBuffers: </b> <%= info.memoryUsage.arrayBuffers %></span></li>
+        <ul class="list-group m-3">
+          <li class="list-group-item list-group-item-success"><span class="text-success text-truncate"><b>rss: </b><%= (info.memoryUsage.rss / (1024 * 1024)).toFixed(4) %> MB</span></li>
+          <li class="list-group-item list-group-item-success"><span class="text-success text-truncate"><b>heapTotal: </b><%= (info.memoryUsage.heapTotal / (1024 * 1024)).toFixed(4) %> MB</span></li>
+          <li class="list-group-item list-group-item-success"><span class="text-success text-truncate"><b>heapUsed: </b> <%= (info.memoryUsage.heapUsed / (1024 * 1024)).toFixed(4) %> MB</span></li>
+          <li class="list-group-item list-group-item-success"><span class="text-success text-truncate"><b>external: </b> <%= (info.memoryUsage.external / (1024 * 1024)).toFixed(4) %> MB</span></li>
+          <li class="list-group-item list-group-item-success"><span class="text-success text-truncate"><b>arrayBuffers: </b> <%= (info.memoryUsage.arrayBuffers / (1024 * 1024)).toFixed(4) %> MB</span></li>
         </ul>
         <hr>
         <h5 class="m-3 text-truncate">Path: <span class="text-success"><%= info.path %></span></h5>

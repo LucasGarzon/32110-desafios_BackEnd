@@ -16,7 +16,6 @@ const infoView = {
   directory: process.cwd()
 }
 
-console.log(infoView);
 
 router.get('/', (req, res) => {
   res.render('index_info', {info: infoView})
