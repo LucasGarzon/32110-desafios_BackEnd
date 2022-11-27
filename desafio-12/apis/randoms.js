@@ -5,7 +5,7 @@ function getRandomInt(amount) {
   for (let index = 0; index < enteredAmount ; index++) {
     Math.floor(Math.random() * 1000 + 1)
   }
-  const result = {message: 'task completed', amount: enteredAmount}
+  const result = {message: 'Task completed', amount: enteredAmount}
   return process.send(result)
 }
 
