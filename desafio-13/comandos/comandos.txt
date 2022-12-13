@@ -1,0 +1,19 @@
+Comandos para correr los servidores: 
+
+Usando Modulo Cluster
+  => nodemon app.js --fork
+  => nodemon app.js --cluster 
+
+Usando PM2
+  => pm2 start app_pm2.js --watch -- "numero del puerto" 
+  => pm2 start app_pm2.js --watch -i max -- "numero del puerto" (para el modo cluster)
+  => pm2 delete app_pm2.js (para matar el servidor)
+  => pm2 monit (para monitorear)
+
+NGINX
+  => configurar el archivo nginx.conf || En mi caso tuve que usar el puerto 81 porque mi computadora tenía ocupado el 80
+  => start nginx (levanta el servidor de nginx)
+  => start -s reload (en el caso de hacer algun cambio en la configuración)
+  => start -s stop (detener el servidor)
+  => start -s quit (detener el servidor)
+
