@@ -17,6 +17,7 @@ import './strategies/local.js'
 import { randomRouter } from './routes/randoms-router.js'
 import cluster from 'cluster'
 import core from 'os'
+import { fork } from 'child_process'
 dotenv.config()
 
 const uri = process.env.USER_URI
@@ -24,7 +25,7 @@ loader.start()
 const productManager = new ProductManager()
 const chatManager = new ChatManager()
 const app = express()
-const PORT = parseInt(process.argv.slice(2)) || 8080
+const PORT = parseInt(process.argv[2]) || 8080
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use('/content', express.static('./public'))
@@ -57,6 +58,7 @@ if (cluster.isPrimary) {
 } else {
   const server = app.listen(PORT, () => console.log(`Server up on port ${PORT} by process ${process.pid}`))
   const io = new Server(server)
+
   const logChecker = (req, res, next) => {
     if (req.isAuthenticated()) return next()
     res.redirect('/login')
@@ -112,6 +114,7 @@ if (cluster.isPrimary) {
       res.render('index_logout', {user: username})
     })
   })
+ 
   app.use('/info', infoRouter)
   app.use('/api/random', randomRouter)
   app.use('/products', productRouter)
