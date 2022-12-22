@@ -1,16 +1,14 @@
 // import getRandomInt from "../apis/randoms.js";
 import { Router } from "express";
-import { fork } from 'child_process'
 import {loggerInfo} from '../app.js'
+import {getRandomInt} from '../apis/randoms.js'
 
 const router = new Router 
 
 router.get('/', loggerInfo, (req, res) => {
   const userAmount = parseInt(req.query.cant)
-  let taskCompleted = fork('./apis/randoms', [userAmount])
-  taskCompleted.on('message', msg => {
-    return res.render('index_random', {message: msg.message, amount: msg.amount})
-  })
+  let taskCompleted = getRandomInt(userAmount)
+  return res.render('index_random', {message: taskCompleted.message, amount: taskCompleted.amount})
 })
 
 const randomRouter = router

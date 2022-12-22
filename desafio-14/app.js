@@ -153,12 +153,6 @@ app.get('/logout', loggerInfo, function (req, res, next) {
   })
 })
 
-// -- DESAFIO 14 || LOG4JS -- Ruta y método de las peticiones a rutas inexistentes en el servidor (warning)
-app.use((req, res) => {
-  const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl
-  warnLogger.warn(`method ${req.method} and route ${fullUrl} not implemented`)
-  res.status(404).send('<h1>Page not found on the server</h1>')
-});
 
 //-----------------------------------------------------------
 
@@ -180,4 +174,11 @@ io.on('connection', socket => {
       io.emit('chatHistory', data)
   })
 })
+
+// -- DESAFIO 14 || LOG4JS -- Ruta y método de las peticiones a rutas inexistentes en el servidor (warning)
+app.use((req, res) => {
+  const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl
+  warnLogger.warn(`method ${req.method} and route ${fullUrl} not implemented`)
+  res.status(404).send('<h1>Page not found on the server</h1>')
+});
 

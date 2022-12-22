@@ -1,1 +1,8 @@
 [2022-12-22T01:11:34.782] [WARN] warn - method GET and route http://localhost:8080/testingError not implemented
+[2022-12-22T01:18:41.017] [WARN] warn - method GET and route http://localhost:8080/random not implemented
+[2022-12-22T01:19:06.286] [WARN] warn - method GET and route http://localhost:8080/api/random not implemented
+[2022-12-22T01:19:17.272] [WARN] warn - method GET and route http://localhost:8080/api/random not implemented
+[2022-12-22T01:19:24.828] [WARN] warn - method GET and route http://localhost:8080/api/random not implemented
+[2022-12-22T01:19:30.103] [WARN] warn - method GET and route http://localhost:8080/api/randoms not implemented
+[2022-12-22T01:19:38.871] [WARN] warn - method GET and route http://localhost:8080/api/random not implemented
+[2022-12-22T01:19:48.332] [WARN] warn - method GET and route http://localhost:8080/info not implemented
