@@ -77,6 +77,7 @@ log4js.configure({
 const logger = log4js.getLogger();
 const warnLogger = log4js.getLogger('warn');
 const errorLogger = log4js.getLogger('error');
+export default errorLogger
 
 // -- DESAFIO 14 || LOG4JS -- Ruta y método de todas las peticiones recibidas por el servidor (info)
 export function loggerInfo (req, res, next) {
@@ -84,6 +85,14 @@ export function loggerInfo (req, res, next) {
   logger.info(`${req.method} ${fullUrl}`)
   next()
 }
+
+// -- DESAFIO 14 || LOG4JS -- Ruta y método de las peticiones a rutas inexistentes en el servidor (warning)
+// app.use((req, res) => {
+//   const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+//   warnLogger.warn(`method ${req.method} and route ${fullUrl} not implemented`)
+//   res.status(404).send({error: -2, descripcion: `route ${req.baseUrl}${req.url} method ${req.method} not implemented`});
+// });
+
 
 const logChecker = (req, res, next) => {
   if (req.isAuthenticated()) return next()
