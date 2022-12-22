@@ -21,6 +21,8 @@ const infoView = {
 
 
 router.get('/', loggerInfo, (req, res) => {
+  // -- DESAFIO 14 || INFO EXTRAÍDA DE LA RUTA PREVIO AL ENVÍO AL USUARIO
+  console.log({info: infoView})
   res.render('index_info', {info: infoView})
 })
 

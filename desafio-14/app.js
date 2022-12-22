@@ -20,9 +20,6 @@ import compression from 'compression'
 // -- DESAFIO 14 || LOG4JS -- 
 import log4js from 'log4js'
 dotenv.config()
-
-const uri = process.env.USER_URI
-
 loader.start()
 
 const productManager = new ProductManager()
@@ -46,7 +43,7 @@ app.set('view engine', 'ejs')
 app.use(cookieParser())
 app.use(session({
   store: MongoStore.create({
-    mongoUrl: uri,
+    mongoUrl: process.env.USER_URI,
     collectionName: 'sessions',
     ttl: 120
   }),
