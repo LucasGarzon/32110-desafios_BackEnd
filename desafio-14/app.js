@@ -86,14 +86,6 @@ export function loggerInfo (req, res, next) {
   next()
 }
 
-// -- DESAFIO 14 || LOG4JS -- Ruta y método de las peticiones a rutas inexistentes en el servidor (warning)
-// app.use((req, res) => {
-//   const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-//   warnLogger.warn(`method ${req.method} and route ${fullUrl} not implemented`)
-//   res.status(404).send({error: -2, descripcion: `route ${req.baseUrl}${req.url} method ${req.method} not implemented`});
-// });
-
-
 const logChecker = (req, res, next) => {
   if (req.isAuthenticated()) return next()
   res.redirect('/login')
@@ -160,6 +152,13 @@ app.get('/logout', loggerInfo, function (req, res, next) {
     res.render('index_logout', {user: username})
   })
 })
+
+// -- DESAFIO 14 || LOG4JS -- Ruta y método de las peticiones a rutas inexistentes en el servidor (warning)
+app.use((req, res) => {
+  const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl
+  warnLogger.warn(`method ${req.method} and route ${fullUrl} not implemented`)
+  res.status(404).send('<h1>Page not found on the server</h1>')
+});
 
 //-----------------------------------------------------------
 

@@ -1,5 +1,1 @@
-[2022-12-22T00:40:27.398] [WARN] warn - method GET and route http://localhost:8080/error not implemented
-[2022-12-22T00:49:34.953] [WARN] warn - method GET and route http://localhost:8080/error not implemented
-[2022-12-22T00:49:38.100] [WARN] warn - method GET and route http://localhost:8080/ not implemented
-[2022-12-22T00:49:42.955] [WARN] warn - method GET and route http://localhost:8080/ not implemented
-[2022-12-22T00:57:45.166] [WARN] warn - method GET and route http://localhost:8080/ not implemented
+[2022-12-22T01:11:34.782] [WARN] warn - method GET and route http://localhost:8080/testingError not implemented
