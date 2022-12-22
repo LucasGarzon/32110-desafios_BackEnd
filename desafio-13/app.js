@@ -48,7 +48,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // ####--------- DESAFIO 13 ----------####
-
 if (cluster.isPrimary) {
   console.log(`Primary process ${process.pid}`)
   for (let i=0; i<core.cpus().length; i++) {
