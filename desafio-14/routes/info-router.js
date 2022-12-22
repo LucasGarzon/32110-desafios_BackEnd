@@ -1,5 +1,6 @@
 import {Router} from 'express';
 import core from 'os';
+import {loggerInfo} from '../app.js'
 const router = Router()
 
 function verifyArgs(argvs) {
@@ -19,7 +20,7 @@ const infoView = {
 }
 
 
-router.get('/', (req, res) => {
+router.get('/', loggerInfo, (req, res) => {
   res.render('index_info', {info: infoView})
 })
 

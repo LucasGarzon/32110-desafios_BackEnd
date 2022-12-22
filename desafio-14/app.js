@@ -17,6 +17,8 @@ import './strategies/local.js'
 import { randomRouter } from './routes/randoms-router.js'
 // -- DESAFIO 14 || COMPRESSION -- 
 import compression from 'compression'
+// -- DESAFIO 14 || LOG4JS -- 
+import log4js from 'log4js'
 dotenv.config()
 
 const uri = process.env.USER_URI
@@ -57,6 +59,32 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// -- DESAFIO 14 || LOG4JS -- CONFIGURACIÓN 
+log4js.configure({
+  appenders: {
+    console: { type: 'console' },
+    warn: { type: 'file', filename: 'warn.log' },
+    error: { type: 'file', filename: 'error.log' },
+  },
+  categories: {
+    default: { appenders: ['console'], level: 'all' },
+    warn: { appenders: ['console', 'warn'], level: 'warn' },
+    error: { appenders: ['console', 'error'], level: 'error' },
+  },
+});
+
+// -- DESAFIO 14 || LOG4JS -- SEPARAR EN CATEGORÍAS
+const logger = log4js.getLogger();
+const warnLogger = log4js.getLogger('warn');
+const errorLogger = log4js.getLogger('error');
+
+// -- DESAFIO 14 || LOG4JS -- Ruta y método de todas las peticiones recibidas por el servidor (info)
+export function loggerInfo (req, res, next) {
+  const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+  logger.info(`${req.method} ${fullUrl}`)
+  next()
+}
+
 const logChecker = (req, res, next) => {
   if (req.isAuthenticated()) return next()
   res.redirect('/login')
@@ -67,27 +95,28 @@ const outlineChecker = (req, res, next) => {
   res.redirect('/')
 }
 
-app.get('/', logChecker, (req, res) => {
+app.get('/', logChecker, loggerInfo, (req, res) => {
   res.render('index', {user: req.user.username})
 })
 
-app.get('/dashboard', logChecker, (req, res) => {
+app.get('/dashboard', logChecker, loggerInfo, (req, res) => {
+    logger.info(`${req.method} ${req.url}`)
     res.render('index', {user: req.user.username})
 })
 
-app.get('/singup', (req, res) => {
+app.get('/singup', loggerInfo, (req, res) => {
   res.render('index_singup')
 })
 
-app.get('/registerError', (req, res) => {
+app.get('/registerError', loggerInfo, (req, res) => {
   res.render('register_error')
 })
 
-app.get('/loginError', (req, res) => {
+app.get('/loginError', loggerInfo, (req, res) => {
   res.render('login_error')
 })
 
-app.post('/singup', async (req, res) => {
+app.post('/singup', loggerInfo, async (req, res) => {
   const {username, email, password} = req.body
   try {
     let user = await userModel.findOne({username})
@@ -104,16 +133,16 @@ app.post('/singup', async (req, res) => {
   }
 })
 
-app.get('/login', outlineChecker, (req, res) => {  
+app.get('/login', outlineChecker, loggerInfo, (req, res) => {  
   res.render('index_login');
 })
 
-app.post('/login', passport.authenticate('local', {
+app.post('/login', loggerInfo, passport.authenticate('local', {
   successRedirect: '/dashboard',
   failureRedirect: '/loginError'
 }))
 
-app.get('/logout', function (req, res, next) {
+app.get('/logout', loggerInfo, function (req, res, next) {
   const username = req.user.username
 	req.logout(function(err) {
     if (err) { 
@@ -143,3 +172,4 @@ io.on('connection', socket => {
       io.emit('chatHistory', data)
   })
 })
+
