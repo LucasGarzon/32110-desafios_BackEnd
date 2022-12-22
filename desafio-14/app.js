@@ -15,6 +15,8 @@ import * as dotenv from 'dotenv'
 import userModel from './models/User.js'
 import './strategies/local.js'
 import { randomRouter } from './routes/randoms-router.js'
+// -- DESAFIO 14 || COMPRESSION -- 
+import compression from 'compression'
 dotenv.config()
 
 const uri = process.env.USER_URI
@@ -31,11 +33,14 @@ const io = new Server(server)
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+// -- DESAFIO 14 || COMPRESSION -- 
+app.use(compression({
+  level: 6
+}))
 app.use('/content', express.static('./public'))
 app.set('views', './views')
 app.set('view engine', 'ejs')
 
-//IMPLEMENTACION DEL DESAFIO 11 --------------------------
 app.use(cookieParser())
 app.use(session({
   store: MongoStore.create({
