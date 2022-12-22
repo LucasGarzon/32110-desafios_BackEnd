@@ -1,0 +1,9 @@
+# Ejecutar el servidor con la flag --prof :
+  => node --prof app.js
+
+# En una consola aparte ejecutar artillery :
+  => artillery quick --count 50 -n 20 http://localhost:8080/info > result_artillery.txt
+
+# Procesar el reporte (n representan números) :
+  => node --prof-process isolate-0nnnnnnnnnn-v8.log > processed.txt    
+  * En mi caso tuve que usar powershell ya que en bash tuve problemas para que corra el comando. El error arrojado fue "stdout is not a tty"

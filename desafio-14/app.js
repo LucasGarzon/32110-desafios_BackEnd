@@ -150,9 +150,6 @@ app.get('/logout', loggerInfo, function (req, res, next) {
   })
 })
 
-
-//-----------------------------------------------------------
-
 app.use('/info', infoRouter)
 app.use('/api/random', randomRouter)
 app.use('/products', productRouter)
