@@ -36,7 +36,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(compression({
   level: 6
 }))
-app.use('/content', express.static('./public'))
+app.use('/content', express.static('src/public'))
 app.set('views', './src/views')
 app.set('view engine', 'ejs')
 
