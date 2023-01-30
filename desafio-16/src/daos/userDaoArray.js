@@ -1,4 +1,5 @@
 export default class UsersDaoArray {
+  
   constructot() {
     this.users = []
   }
