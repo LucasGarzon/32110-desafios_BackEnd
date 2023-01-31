@@ -16,11 +16,11 @@ const outlineChecker = (req, res, next) => {
 };
 
 router.get("/", logChecker, loggerInfo, (req, res) => {
-  res.render("index", { user: req.user.username });
+  res.render("index", { user: req.user.full_name });
 });
 
 router.get("/dashboard", logChecker, loggerInfo, (req, res) => {
-  res.render("index", { user: req.user.username });
+  res.render("index", { user: req.user.full_name });
 });
 
 router.get("/singup", outlineChecker, loggerInfo, (req, res) => {
@@ -50,7 +50,7 @@ router.post(
 );
 
 router.get('/logout', loggerInfo, function (req, res, next) {
-  const username = req.user.username
+  const username = req.user.full_name
 	req.logout(function(err) {
     if (err) { 
       return next(err); 

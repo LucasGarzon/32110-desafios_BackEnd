@@ -5,14 +5,16 @@ export default class userDaoMongo {
   
   create = async (user) => {
     try {
-      const { username, email, password } = user
+      const { username, email, password, first_name, last_name } = user
       let newUser = await userModel.findOne({ $or: [{username: username}, {email: email}] })
       if (newUser) return false
       const cryptPass = await bcrypt.hash(password, 12)
       newUser = await userModel.create({
         username, 
         email,
-        password: cryptPass
+        password: cryptPass,
+        first_name,
+        last_name
       })
       return true
     } catch (err) {

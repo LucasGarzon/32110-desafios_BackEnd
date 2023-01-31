@@ -2,6 +2,7 @@ import passport from "passport"
 import { Strategy as LocalStrategy } from 'passport-local'
 import bcrypt from 'bcryptjs'
 import UsersService from "../services/userService.js";
+import UserDTO from "../dtos/userDTO.js";
 const userService = new UsersService()
 
 const authenticate = (userService) => {
@@ -25,6 +26,6 @@ passport.serializeUser((user, done) => done(null, user.id))
 
 passport.deserializeUser((id, done) => {
   userService.getUserById(id)
-    .then((user) => done(null, user))
+    .then((user) => done(null, user = new UserDTO(user)))
     .catch((err) => done(err))
 })

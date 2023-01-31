@@ -20,7 +20,7 @@ export default class UsersDaoFile {
 
   create = async (user) => {
     try {
-      const { username, email, password } = user
+      const { username, email, password, first_name, last_name } = user
       let users = await this.#readFile()
       const foundUsername = users.find(u => u.username === username)
       const foundEmail = users.find(u => u.email === email)
@@ -30,9 +30,12 @@ export default class UsersDaoFile {
       else userId = users[users.length-1].id + 1
       const cryptPass = await bcrypt.hash(password, 12)
       const newUser = {
-        username: username,
-        email: email,
+        username,
+        email,
+        first_name,
+        last_name,
         password: cryptPass,
+        createdAt: new Date().toUTCString(),
         id: userId
       }
       users.push(newUser)
