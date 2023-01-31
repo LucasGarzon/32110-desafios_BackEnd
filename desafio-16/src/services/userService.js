@@ -13,4 +13,13 @@ export default class UsersService {
   addUser = async(user) => {
     return await this.usersDao.create(user)
   }
+
+  getUser = async (username) => {
+    return await this.usersDao.findOne(username)
+  }
+
+  getUserById = async (id) => {
+    return await this.usersDao.findById(id)
+  }
+
 }

@@ -1,10 +1,7 @@
 import express from "express";
 import passport from "passport";
 import { loggerInfo } from "../app.js";
-// import errorLogger, { loggerInfo } from "../app.js";
-// import userModel from '../models/User.js'
-// import bcrypt from 'bcryptjs'
-import userManger from "../manager/userManger.js";
+import userManager from "../manager/userManager.js";
 
 const router = express.Router();
 
@@ -38,24 +35,7 @@ router.get('/loginError', loggerInfo, (req, res) => {
   res.render('login_error')
 })
 
-// router.post('/singup', loggerInfo, async (req, res) => {
-//   const {username, email, password} = req.body
-//   try {
-//     let user = await userModel.findOne({username})
-//     if(user) res.redirect('/registerError')
-//     const cryptPass = await bcrypt.hash(password, 12)
-//     user = await userModel.create({
-//       username,
-//       email,
-//       password: cryptPass
-//     })
-//     res.redirect('/')
-//   } catch (err) {
-//     errorLogger.error(err)
-//   }
-// })
-
-router.post('/singup', loggerInfo, userManger.saveUser)
+router.post('/singup', loggerInfo, userManager.saveUser)
 
 router.get('/registerError', loggerInfo, (req, res) => {
   res.render('register_error')

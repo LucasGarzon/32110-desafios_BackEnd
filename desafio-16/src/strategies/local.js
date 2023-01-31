@@ -1,25 +1,30 @@
 import passport from "passport"
 import { Strategy as LocalStrategy } from 'passport-local'
 import bcrypt from 'bcryptjs'
-import userModel from "../models/User.js"
+import UsersService from "../services/userService.js";
+const userService = new UsersService()
 
-passport.use(new LocalStrategy(function (username, password, done) {
-  userModel.findOne({username: username}, function (err, user) {
-    if (err) return done(err)
-    if (!user) return done(null, false, {message: 'Nombre de usuario no válido'})
+const authenticate = (userService) => {
+  return (username, password, done) => {
+    userService.getUser(username)
+      .then((user) => {
+        if (!user) return done(null, false, { message: 'Nombre de usuario no válido' })
+        bcrypt.compare(password, user.password, (err, res) => {
+          if (err) return done(err)
+          if (res === false) return done(null, false, { message: 'Contraseña inválida' })
+          return done(null, user)
+        })
+      })
+      .catch((err) => done(err))
+  }
+}
 
-    bcrypt.compare(password, user.password, function (err, res) {
-      if (err) return done(err)
-      if (res === false) return done(null, false, {message: 'Contraseña inválida'})
-      return done(null, user)
-    })
-  })
-}))
+passport.use(new LocalStrategy(authenticate(userService)))
 
 passport.serializeUser((user, done) => done(null, user.id))
 
 passport.deserializeUser((id, done) => {
-  userModel.findById(id, function(err, user) {
-    done(err, user)
-  })
+  userService.getUserById(id)
+    .then((user) => done(null, user))
+    .catch((err) => done(err))
 })

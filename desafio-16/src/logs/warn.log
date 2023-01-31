@@ -10,3 +10,11 @@
 [2023-01-30T22:53:17.016] [WARN] warn - method GET and route http://localhost:8080/login_error not implemented
 [2023-01-30T22:56:14.991] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
 [2023-01-31T00:35:04.136] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
+[2023-01-31T01:06:55.361] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
+[2023-01-31T01:08:25.904] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
+[2023-01-31T01:46:03.618] [WARN] warn - method GET and route http://localhost:8080/login_error not implemented
+[2023-01-31T02:05:43.294] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
+[2023-01-31T02:06:58.130] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
+[2023-01-31T02:11:07.933] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
+[2023-01-31T02:13:29.386] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
+[2023-01-31T02:20:58.555] [WARN] warn - method GET and route http://localhost:8080/favicon.ico not implemented
