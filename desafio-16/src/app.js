@@ -19,11 +19,9 @@ import compression from "compression";
 import log4js from "log4js";
 import { userRouter } from "./routes/user-router.js";
 import manager from "./manager/manager.js";
+import chatManager from "./manager/chatManager.js"
 dotenv.config();
 loader.start();
-
-// const productManager = new ProductManager()
-const chatManager = new ChatManager();
 
 const app = express();
 const PORT = parseInt(process.argv.slice(2)) || 8080;
@@ -95,11 +93,9 @@ app.use("/chat", chatRouter);
 
 io.on("connection", (socket) => {
   console.log(`Client ${socket.id} connected...`);
+  let managerReult = manager.getProductsForSocket(socket);
   manager.getProductsForSocket(socket);
-  chatManager
-    .findAll()
-    .then((result) => socket.emit("chatHistory", result))
-    .catch((err) => console.log(err));
+  chatManager.getMessagesForSocket(socket)
   socket.on("products", (data) => {
     io.emit("history", data);
   });

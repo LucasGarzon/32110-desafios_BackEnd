@@ -1,19 +1,23 @@
-import {chatSchema} from '../models/chatModel.js'
+import ChatService from "../services/chatService.js";
+const ChatsService = new ChatService()
 
-export default class ChatManager {
-    create = async (message) => {
-        try {
-            await chatSchema.create(message)
-            let chatTable = this.findAll()
-            return chatTable
-        } catch(err) {
-            return {status: "error", message: err.message}
-        }
-    }
+const saveMessage = async (req, res) => {
+    const result = await ChatsService.addMessage(req.body)
+    res.send(result)
+}
 
-    findAll = async () => {
-        let chatTable = await chatSchema.find()
-        return chatTable
-    }
+const getMessages = async (rec, res) => {
+    let result = await ChatsService.getChat()
+    console.log(result);
+    res.send(result)
+}
+
+const getMessagesForSocket = async (socket) => {
+    let result = await ChatsService.getChat()
+    socket.emit('chatHistory', result)
+}
+
+export default { 
+    saveMessage, getMessages, getMessagesForSocket
 }
 
