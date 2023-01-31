@@ -1,0 +1,11 @@
+[2023-01-30T18:51:16.398] [WARN] warn - method GET and route http://localhost:8080/favicon.ico not implemented
+[2023-01-30T18:51:24.085] [WARN] warn - method GET and route http://localhost:8080/singup not implemented
+[2023-01-30T18:51:40.229] [WARN] warn - method GET and route http://localhost:8080/singup not implemented
+[2023-01-30T18:51:44.438] [WARN] warn - method GET and route http://localhost:8080/singup not implemented
+[2023-01-30T18:52:05.330] [WARN] warn - method GET and route http://localhost:8080/singup not implemented
+[2023-01-30T18:52:45.797] [WARN] warn - method GET and route http://localhost:8080/singup not implemented
+[2023-01-30T19:41:40.484] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
+[2023-01-30T22:51:39.490] [WARN] warn - method GET and route http://localhost:8080/login_error not implemented
+[2023-01-30T22:51:57.883] [WARN] warn - method GET and route http://localhost:8080/login_error not implemented
+[2023-01-30T22:53:17.016] [WARN] warn - method GET and route http://localhost:8080/login_error not implemented
+[2023-01-30T22:56:14.991] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
