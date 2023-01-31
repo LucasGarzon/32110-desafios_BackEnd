@@ -1,0 +1,12 @@
+[
+  {
+    "title": "prueba1",
+    "price": "123456",
+    "thumbnail": "https://picsum.photos/id/237/200/300"
+  },
+  {
+    "title": "prueba2",
+    "price": "33",
+    "thumbnail": "https://picsum.photos/200/300?grayscale"
+  }
+]
