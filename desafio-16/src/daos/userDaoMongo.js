@@ -21,13 +21,13 @@ export default class userDaoMongo {
   }
 
   findOne = async (username) => {
-    const foundUser = userModel.findOne({username: username})
+    const foundUser = await userModel.findOne({username: username})
     if (!foundUser) return null
     return foundUser
   }
 
   findById = async (id) => {
-    const foundUser = userModel.findOne({_id: id})
+    const foundUser = await userModel.findOne({_id: id})
     if (!foundUser) return null
     return foundUser
   }

@@ -2,12 +2,13 @@ import PersistenceFactory from "../daos/persistenceFactory.js";
 
 export default class UsersService { 
   constructor() {
-    this.usersDao
+    this.usersDao 
     this.init()
   }
 
   init = async() => {
-    this.usersDao = await PersistenceFactory.getPersistence()
+    let persistence = await PersistenceFactory.getPersistence()
+    this.usersDao = persistence.users
   }
 
   addUser = async(user) => {

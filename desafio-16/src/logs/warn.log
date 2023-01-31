@@ -18,3 +18,10 @@
 [2023-01-31T02:11:07.933] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
 [2023-01-31T02:13:29.386] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
 [2023-01-31T02:20:58.555] [WARN] warn - method GET and route http://localhost:8080/favicon.ico not implemented
+[2023-01-31T03:20:28.801] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
+[2023-01-31T03:42:43.696] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
+[2023-01-31T03:46:11.457] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
+[2023-01-31T03:56:19.352] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
+[2023-01-31T03:58:05.263] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
+[2023-01-31T04:10:50.133] [WARN] warn - method GET and route http://localhost:8080/unaFoto not implemented
+[2023-01-31T04:11:07.679] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
