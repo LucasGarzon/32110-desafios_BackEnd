@@ -21,6 +21,8 @@ export default class ProductDaoFile {
   create = async (product) => {
     try {
       let products = await this.#readFile()
+      if (products.length === 0) product._id = 1
+      else product._id = products[products.length-1]._id + 1
       products.push(product)
       await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2))
       return products

@@ -1,0 +1,2 @@
+[2023-01-31T13:01:38.841] [WARN] warn - method GET and route http://localhost:8080/unaFoto not implemented
+[2023-01-31T13:01:42.222] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
