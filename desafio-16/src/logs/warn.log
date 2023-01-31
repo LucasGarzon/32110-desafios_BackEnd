@@ -9,3 +9,4 @@
 [2023-01-30T22:51:57.883] [WARN] warn - method GET and route http://localhost:8080/login_error not implemented
 [2023-01-30T22:53:17.016] [WARN] warn - method GET and route http://localhost:8080/login_error not implemented
 [2023-01-30T22:56:14.991] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
+[2023-01-31T00:35:04.136] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
