@@ -22,6 +22,12 @@ const getProductsForSocket = async (socket) => {
   socket.emit('history', result)
 }
 
+const updateOne = async (req, res) => {
+  let result = await productService.update(req.params, req.body)
+  if (!result) return res.send({message: 'Product not found'})
+  res.send(result)
+}
+
 export default {
-  saveProduct, getAllProducts, getProductsForSocket, deleteProduct
+  saveProduct, getAllProducts, getProductsForSocket, deleteProduct, updateOne
 }

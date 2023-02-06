@@ -25,4 +25,8 @@ export default class ProductsService {
     return await this.productsDao.deleteProd(id)
   }
 
+  update = async (id, modification) => {
+    return await this.productsDao.updateProduct(id, modification)
+  }
+
 }

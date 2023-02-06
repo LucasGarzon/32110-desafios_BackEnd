@@ -26,4 +26,16 @@ export default class productDaoMongo {
     }
   }
 
+  updateProduct = async (id, modification) => {
+    try {
+      if (!modification) return ({error: 'error' ,message: 'Modification is required'})
+      let product = await productSchema.updateOne({_id:id.id}, {$set: modification})
+      if(product.acknowledged === false) return ({error: 'params error', message: 'Incorrect param'})
+      let response = productSchema.findOne({_id:id.id})
+      return response
+    } catch (err) {
+      console.log(err.message)
+    }
+  }
+
 }

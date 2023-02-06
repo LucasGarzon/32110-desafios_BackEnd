@@ -55,7 +55,22 @@ async function delProduct(id) {
   console.log(response)
 }
 
+//Method UPDATE de un producto
+async function updateProduct(id, modification) {
+  if (!id || !modification) return console.log('Se deben ingresar todos los parámetros para ejecutar la función')
+  const newURL = URL + '/' + id
+  const updateRes = await axios.post(newURL, modification)
+  const response = {
+    URL,
+    Method: 'POST',
+    Status: updateRes.status,
+    Data: updateRes.data
+  }
+  console.log(response)
+}
 
-// postProduct(newProduct)
-// delProduct('63e14ed8b874aaf30902fe82')
+
 // getAllProducts()
+// postProduct(newProduct)
+// delProduct('63e17498733736bd0e1c544f')
+// updateProduct('63e17487a6915aa3d97c4a0c', {price: 103})
