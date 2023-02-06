@@ -1,0 +1,11 @@
+[
+  {
+    "username": "prueba01",
+    "email": "prueba01@gmail.com",
+    "first_name": "Lucas",
+    "last_name": "Garzón",
+    "password": "$2a$12$kmkWdY4gLUhN3ybKKq6Nhuu2HRevBhT7fWEkW3l7gKg9/dvQ2vraq",
+    "createdAt": "Tue, 31 Jan 2023 19:36:59 GMT",
+    "id": 1
+  }
+]

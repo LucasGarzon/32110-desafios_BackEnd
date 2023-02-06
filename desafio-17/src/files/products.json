@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Prueba producto 1",
+    "price": "11",
+    "thumbnail": "https://picsum.photos/200/300?grayscale",
+    "_id": 1
+  },
+  {
+    "title": "Prueba producto 2",
+    "price": "546",
+    "thumbnail": "https://picsum.photos/200/300/?blur",
+    "_id": 2
+  }
+]

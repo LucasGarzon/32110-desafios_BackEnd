@@ -1,0 +1,14 @@
+[
+  {
+    "email": "mensaje@gmail.com",
+    "message": "Prueba mensaje 01",
+    "_id": 1,
+    "timestamp": "Tue, 31 Jan 2023 15:58:29 GMT"
+  },
+  {
+    "email": "prueba02@gmail.com",
+    "message": "Preuba mensaje 02",
+    "_id": 2,
+    "timestamp": "Tue, 31 Jan 2023 15:58:46 GMT"
+  }
+]
