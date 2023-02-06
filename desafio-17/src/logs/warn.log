@@ -13,3 +13,10 @@
 [2023-01-31T16:30:08.847] [WARN] warn - method GET and route http://localhost:8080/unaFoto not implemented
 [2023-01-31T16:30:12.411] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
 [2023-01-31T16:37:10.209] [WARN] warn - method DELETE and route http://localhost:8080/logout not implemented
+[2023-02-06T14:02:21.801] [WARN] warn - method DELETE and route http://localhost:8080/products/ not implemented
+[2023-02-06T14:03:23.278] [WARN] warn - method DELETE and route http://localhost:8080/products/ not implemented
+[2023-02-06T14:04:17.173] [WARN] warn - method DELETE and route http://localhost:8080/products/ not implemented
+[2023-02-06T14:04:37.093] [WARN] warn - method DELETE and route http://localhost:8080/products/ not implemented
+[2023-02-06T14:06:36.999] [WARN] warn - method DELETE and route http://localhost:8080/products/ not implemented
+[2023-02-06T14:07:05.687] [WARN] warn - method DELETE and route http://localhost:8080/products/ not implemented
+[2023-02-06T15:52:56.180] [WARN] warn - method GET and route http://localhost:8080/products/63e14ae83b3e7bc2f4a8c5b2 not implemented

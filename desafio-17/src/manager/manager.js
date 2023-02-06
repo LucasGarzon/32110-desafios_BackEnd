@@ -11,11 +11,17 @@ const getAllProducts = async (req, res) => {
   res.send(result)
 }
 
+const deleteProduct = async (req, res) => {
+  let result = await productService.deleteProducts(req.params)
+  if(!result) return res.send({message: 'Product not found'})
+  res.send(result)
+}
+
 const getProductsForSocket = async (socket) => {
   let result = await productService.getProducts()
   socket.emit('history', result)
 }
 
 export default {
-  saveProduct, getAllProducts, getProductsForSocket
+  saveProduct, getAllProducts, getProductsForSocket, deleteProduct
 }

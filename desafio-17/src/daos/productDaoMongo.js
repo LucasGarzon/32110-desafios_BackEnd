@@ -17,4 +17,13 @@ export default class productDaoMongo {
     return products
   }
 
+  deleteProd = async (id) => {
+    try {
+      let deleteProduct = await productSchema.deleteOne({_id:id})
+      return deleteProduct
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+
 }

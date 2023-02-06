@@ -7,6 +7,7 @@ const router = Router()
 
 router.get('/', loggerInfo, manager.getAllProducts)
 router.post('/', loggerInfo, manager.saveProduct)
+router.delete('/:_id', manager.deleteProduct)
 
 const productRouter = router
 export {productRouter}
