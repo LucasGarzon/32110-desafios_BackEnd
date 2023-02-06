@@ -65,7 +65,7 @@ async function delProduct(id) {
   }
 }
 
-//Method UPDATE de un producto
+//Method PUT para update de un producto
 async function updateProduct(id, modification) {
   if (!id || !modification) return console.log('Se deben ingresar todos los parámetros para ejecutar la función')
   const newURL = URL + '/' + id
@@ -82,5 +82,5 @@ async function updateProduct(id, modification) {
 
 // getAllProducts()
 // postProduct(newProduct)
-// delProduct('63e19176bb23303e9138f3e6')
+// delProduct('63e1934ddf8dfe11dce17b6f')
 // updateProduct('63e17487a6915aa3d97c4a0c', {price: 103})

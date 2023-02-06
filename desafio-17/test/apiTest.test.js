@@ -27,6 +27,18 @@ describe('test Api-productos', () => {
       
     })
   })
+
+  describe('PUT', () => { 
+    it('Debe poder modificar un producto de la bd por su id', async () => {
+      let modification = {
+        title: 'Ejemplo Axios Actualizado',
+        price: '250',
+        thumbnail: 'https://cdn-icons-png.flaticon.com/512/342/342682.png'
+        }
+      let res = await request.put(`/products/${id}`).send(modification)
+      expect(res.status).to.equal(200)
+    })
+  })
   
   describe('DELETE', () => {
     it('Debe poder eliminar un producto por su id', async () => {
