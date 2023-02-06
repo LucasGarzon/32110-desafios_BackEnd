@@ -72,5 +72,5 @@ async function updateProduct(id, modification) {
 
 // getAllProducts()
 // postProduct(newProduct)
-// delProduct('63e17498733736bd0e1c544f')
+// delProduct('63e17487a6915aa3d97c4a0c')
 // updateProduct('63e17487a6915aa3d97c4a0c', {price: 103})
