@@ -4,9 +4,8 @@ export default class productDaoMongo {
 
   create = async (product) => {
     try {
-      await productSchema.create(product)
-      const products = await productSchema.find()
-      return products
+      const newProduct = await productSchema.create(product)
+      return newProduct
     } catch (err) {
       console.log(err);
     }

@@ -13,7 +13,7 @@ const getAllProducts = async (req, res) => {
 
 const deleteProduct = async (req, res) => {
   let result = await productService.deleteProducts(req.params)
-  if(!result) return res.send({message: 'Product not found'})
+  if(!result) return res.status(500).send({message: 'Product not found'})
   res.send(result)
 }
 
@@ -24,7 +24,7 @@ const getProductsForSocket = async (socket) => {
 
 const updateOne = async (req, res) => {
   let result = await productService.update(req.params, req.body)
-  if (!result) return res.send({message: 'Product not found'})
+  if (!result) return res.status(500).send({message: 'Product not found'})
   res.send(result)
 }
 

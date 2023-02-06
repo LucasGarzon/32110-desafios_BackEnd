@@ -20,3 +20,5 @@
 [2023-02-06T14:06:36.999] [WARN] warn - method DELETE and route http://localhost:8080/products/ not implemented
 [2023-02-06T14:07:05.687] [WARN] warn - method DELETE and route http://localhost:8080/products/ not implemented
 [2023-02-06T15:52:56.180] [WARN] warn - method GET and route http://localhost:8080/products/63e14ae83b3e7bc2f4a8c5b2 not implemented
+[2023-02-06T20:28:39.044] [WARN] warn - method GET and route http://localhost:8080/products/test01 not implemented
+[2023-02-06T20:30:36.137] [WARN] warn - method GET and route http://localhost:8080/products/test01 not implemented

@@ -44,15 +44,25 @@ async function delProduct(id) {
   if (!id) return console.log("Debe ingresar un id como parámetro para ejecutar la función")
   const newURL = URL + '/' + id
   const resDel = await axios.delete(newURL)
-  const getRes = await axios.get(URL)
-  const response = {
-    URL,
-    Method: 'DELETE',
-    Status: resDel.status,
-    Data: resDel.data,
-    Products: getRes.data 
+  if (resDel.data.deletedCount === 1) {
+    const getRes = await axios.get(URL)
+    const response = {
+      URL,
+      Method: 'DELETE',
+      Status: resDel.status,
+      Data: resDel.data,
+      Products: getRes.data 
+    }
+    console.log(response)
+  } else {
+    const response = {
+      URL,
+      Method: 'DELETE',
+      Status: resDel.status,
+      Data: resDel.data
+    }
+    console.log(response)
   }
-  console.log(response)
 }
 
 //Method UPDATE de un producto
@@ -72,5 +82,5 @@ async function updateProduct(id, modification) {
 
 // getAllProducts()
 // postProduct(newProduct)
-// delProduct('63e17487a6915aa3d97c4a0c')
+// delProduct('63e19176bb23303e9138f3e6')
 // updateProduct('63e17487a6915aa3d97c4a0c', {price: 103})
