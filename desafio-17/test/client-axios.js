@@ -16,12 +16,15 @@ let productId = ''
 // Method GET de productos
 async function getAllProducts() {
   try {
+    const start = Date.now()
     const getRes = await axios.get(URL)
+    const end = Date.now()
     const response = {
       Title: 'Get all products',
       URL,
       Method: 'GET',
       Status: getRes.status,
+      Time: end - start + 'ms',
       Data: getRes.data
     }
     console.log(response)
@@ -34,12 +37,15 @@ async function getAllProducts() {
 async function postProduct(product) {
   try {
     if (!product) return console.log("Debe ingresar un producto como parametro")
+    const start = Date.now()
     const postRes = await axios.post(URL, product)
+    const end = Date.now()
     const response = {
       Title: 'Create a product',
       URL,
       Method: 'POST',
       Status: postRes.status,
+      Time: end - start + 'ms',
       Data: postRes.data
     }
     productId = postRes.data._id
@@ -54,12 +60,15 @@ async function updateProduct(id, modification) {
   try {
     if (!id || !modification) return console.log('Se deben ingresar todos los parámetros para ejecutar la función')
     const newURL = URL + '/' + id
+    const start = Date.now()
     const updateRes = await axios.put(newURL, modification)
+    const end = Date.now()
     const response = {
       Title: 'Update a product',
       newURL,
       Method: 'POST',
       Status: updateRes.status,
+      Time: end - start + 'ms',
       Data: updateRes.data
     }
     console.log(response)
@@ -73,7 +82,9 @@ async function delProduct(id) {
   try {
     if (!id) return console.log("Debe ingresar un id como parámetro para ejecutar la función")
     const newURL = URL + '/' + id
+    const start = Date.now()
     const resDel = await axios.delete(newURL)
+    const end = Date.now()
     if (resDel.data.deletedCount === 1) {
       const getRes = await axios.get(URL)
       const response = {
@@ -81,6 +92,7 @@ async function delProduct(id) {
         newURL,
         Method: 'DELETE',
         Status: resDel.status,
+        Time: end - start + 'ms',
         Data: resDel.data,
         Products: getRes.data 
       }
@@ -91,6 +103,7 @@ async function delProduct(id) {
         URL,
         Method: 'DELETE',
         Status: resDel.status,
+        Time: end - start + 'ms',
         Data: resDel.data
       }
       console.log(response)
