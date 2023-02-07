@@ -65,7 +65,7 @@ async function updateProduct(id, modification) {
     const end = Date.now()
     const response = {
       Title: 'Update a product',
-      newURL,
+      URL: newURL,
       Method: 'POST',
       Status: updateRes.status,
       Time: end - start + 'ms',
@@ -89,7 +89,7 @@ async function delProduct(id) {
       const getRes = await axios.get(URL)
       const response = {
         Title: 'Delete a product',
-        newURL,
+        URL: newURL,
         Method: 'DELETE',
         Status: resDel.status,
         Time: end - start + 'ms',
