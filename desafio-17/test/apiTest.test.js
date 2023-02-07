@@ -16,7 +16,7 @@ describe('test Api-productos', () => {
   describe('POST', () => {
     it('Debe poder guardar un usuario', async () => {
       const newProduct = {
-        title: 'Ejemplo Axios 01',
+        title: 'Ejemplo Supertest 01',
         price: '200',
         thumbnail: 'https://cdn-icons-png.flaticon.com/512/342/342681.png'
       }
@@ -31,7 +31,7 @@ describe('test Api-productos', () => {
   describe('PUT', () => { 
     it('Debe poder modificar un producto de la bd por su id', async () => {
       let modification = {
-        title: 'Ejemplo Axios Actualizado',
+        title: 'Ejemplo Supertest Actualizado',
         price: '250',
         thumbnail: 'https://cdn-icons-png.flaticon.com/512/342/342682.png'
         }
