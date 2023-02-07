@@ -10,11 +10,15 @@ const newProduct = {
   thumbnail: 'https://cdn-icons-png.flaticon.com/512/342/342681.png'
 }
 
+
+let productId = ''
+
 // Method GET de productos
 async function getAllProducts() {
   try {
     const getRes = await axios.get(URL)
     const response = {
+      Title: 'Get all products',
       URL,
       Method: 'GET',
       Status: getRes.status,
@@ -31,12 +35,35 @@ async function postProduct(product) {
   if (!product) return console.log("Debe ingresar un producto como parametro")
   const postRes = await axios.post(URL, product)
   const response = {
+    Title: 'Create a product',
     URL,
     Method: 'POST',
     Status: postRes.status,
     Data: postRes.data
   }
+  productId = postRes.data._id
   console.log(response)
+}
+
+//Method PUT para update de un producto
+async function updateProduct(id, modification) {
+  try {
+    if (!id || !modification) return console.log('Se deben ingresar todos los parámetros para ejecutar la función')
+    const newURL = URL + '/' + id
+    const updateRes = await axios.put(newURL, modification)
+    const response = {
+      Title: 'Update a product',
+      newURL,
+      Method: 'POST',
+      Status: updateRes.status,
+      Data: updateRes.data
+    }
+    console.log(response)
+  } catch (err) {
+    const errorNewURL = URL + '/' + id
+    console.log(errorNewURL);
+    console.log(err.message);
+  }
 }
 
 // Method DELETE de un producto
@@ -47,7 +74,8 @@ async function delProduct(id) {
   if (resDel.data.deletedCount === 1) {
     const getRes = await axios.get(URL)
     const response = {
-      URL,
+      Title: 'Delete a product',
+      newURL,
       Method: 'DELETE',
       Status: resDel.status,
       Data: resDel.data,
@@ -56,6 +84,7 @@ async function delProduct(id) {
     console.log(response)
   } else {
     const response = {
+      Title: 'Delete a product',
       URL,
       Method: 'DELETE',
       Status: resDel.status,
@@ -65,22 +94,7 @@ async function delProduct(id) {
   }
 }
 
-//Method PUT para update de un producto
-async function updateProduct(id, modification) {
-  if (!id || !modification) return console.log('Se deben ingresar todos los parámetros para ejecutar la función')
-  const newURL = URL + '/' + id
-  const updateRes = await axios.post(newURL, modification)
-  const response = {
-    URL,
-    Method: 'POST',
-    Status: updateRes.status,
-    Data: updateRes.data
-  }
-  console.log(response)
-}
-
-
-// getAllProducts()
-// postProduct(newProduct)
-// delProduct('63e1934ddf8dfe11dce17b6f')
-// updateProduct('63e17487a6915aa3d97c4a0c', {price: 103})
+getAllProducts()
+await postProduct(newProduct)
+await updateProduct(productId, {title: 'Ejemplo Axios 01 Actualizado'}) 
+await delProduct(productId)

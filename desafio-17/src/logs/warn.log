@@ -22,3 +22,10 @@
 [2023-02-06T15:52:56.180] [WARN] warn - method GET and route http://localhost:8080/products/63e14ae83b3e7bc2f4a8c5b2 not implemented
 [2023-02-06T20:28:39.044] [WARN] warn - method GET and route http://localhost:8080/products/test01 not implemented
 [2023-02-06T20:30:36.137] [WARN] warn - method GET and route http://localhost:8080/products/test01 not implemented
+[2023-02-07T08:43:34.396] [WARN] warn - method POST and route http://localhost:8080/products/63e2396610a1614f5bdd1c3e not implemented
+[2023-02-07T08:49:23.993] [WARN] warn - method POST and route http://localhost:8080/products/63e23ac310a1614f5bdd1c4a not implemented
+[2023-02-07T08:52:22.704] [WARN] warn - method POST and route http://localhost:8080/products/63e23b7610a1614f5bdd1c4c not implemented
+[2023-02-07T08:53:04.052] [WARN] warn - method POST and route http://localhost:8080/products/63e23b9f10a1614f5bdd1c4e not implemented
+[2023-02-07T08:53:20.677] [WARN] warn - method POST and route http://localhost:8080/products/63e23bb010a1614f5bdd1c50 not implemented
+[2023-02-07T08:54:03.504] [WARN] warn - method POST and route http://localhost:8080/products/63e23bb010a1614f5bdd1c50 not implemented
+[2023-02-07T08:57:42.008] [WARN] warn - method POST and route http://localhost:8080/products/63e23ca010a1614f5bdd1c6d not implemented
