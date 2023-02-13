@@ -18,6 +18,11 @@ const resolvers = {
       const newUser = new UserModel({ username, email, password})
       await newUser.save()
       return newUser
+    },
+    deleteUser: async (parent, args, context, info) => {
+      const { id } = args
+      const user = await UserModel.findByIdAndDelete(id)
+      return user
     }
   }
 }
