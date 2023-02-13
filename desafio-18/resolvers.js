@@ -23,6 +23,24 @@ const resolvers = {
       const { id } = args
       const user = await UserModel.findByIdAndDelete(id)
       return user
+    },
+    updateUser: async (parent, args, context, info) => {
+      const { id, username, email, password } = args
+      const user = await UserModel.findById(id)
+      if (!user) {
+        throw new Error(`El usuario con id ${id} no ha sido encontrado`)
+      }
+      if (username) {
+        user.username = username
+      }
+      if (email) {
+        user.email = email
+      }
+      if (password) {
+        user.password = password
+      }
+      await user.save()
+      return user
     }
   }
 }
